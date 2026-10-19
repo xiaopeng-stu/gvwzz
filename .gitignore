@@ -1,0 +1,44 @@
+# Python environments and caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local build products; native/generated/*.cpp remains tracked.
+build/
+dist/
+*.egg-info/
+*.egg
+*.so
+*.pyd
+*.dll
+*.dylib
+*.o
+*.obj
+*.lib
+*.exp
+*.pdb
+cc*.s
+pip-*/
+
+# Local run output and release archives
+results/
+*.log
+gvwzz-v*.zip
+gvwzz-v*.tar.gz
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local credentials
+.env
+.env.*
+!.env.example

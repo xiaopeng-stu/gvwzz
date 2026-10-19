@@ -1,0 +1,192 @@
+{
+  "version": "1.0.0",
+  "release_tag": "v1",
+  "review_date": "2026-10-19",
+  "edition": "standalone CPU source release",
+  "source_archive": "gvwzz-0.10.0.post31-cpu-release(3).zip",
+  "source_sha256": "b3042febaea0b33ff1bfcf5f435c87569ce53690fb8414ba8dc4a6a808364149",
+  "environment": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "sympy": "1.14.0",
+    "cython": "3.3.0",
+    "gmpy2": "2.3.2",
+    "native_arithmetic": "gmp",
+    "solver_threads": 1
+  },
+  "native_build": {
+    "all_five_extensions": true,
+    "cython_sources": true,
+    "generated_cpp_without_cython": true
+  },
+  "regression": {
+    "native": {
+      "discovered": 471,
+      "passed": 471,
+      "skipped": 0
+    },
+    "native_disabled": {
+      "discovered": 471,
+      "passed": 307,
+      "skipped": 164
+    },
+    "generated_cpp": {
+      "discovered": 471,
+      "passed": 471,
+      "skipped": 0
+    },
+    "reference_comparison": {
+      "cases": 32,
+      "coverage": {
+        "euclidean_steps": 78,
+        "regular_steps": 470,
+        "singular_steps": 17,
+        "tail_cap_reached": 13,
+        "tail_steps": 400
+      },
+      "execution_backends": [
+        [
+          "native",
+          "gmp",
+          "gmpy"
+        ],
+        [
+          "python",
+          "python",
+          "gmpy"
+        ]
+      ],
+      "max_coefficient_bits": 2067,
+      "native_workspaces": 457,
+      "sha256": "331601b5fd723b3099a1cb9883c1b5d2834c0c55fdbf052d2b4cdfb03524e6ae"
+    }
+  },
+  "certificate_audit": {
+    "native": {
+      "status": "passed",
+      "seed": 20261019,
+      "cases": 8,
+      "module_orders": [
+        "pot",
+        "top",
+        "g1",
+        "g2",
+        "schreyer",
+        "block"
+      ],
+      "reduction_kernels": [
+        "copy",
+        "heap",
+        "packed"
+      ],
+      "certified_computations": 141,
+      "ordinary_g_pairs_checked": 7026,
+      "exact_outputs_sha256": "7560c7de91f78fb8f4f3b904c838625f621d4b460ec2f47b36528bb5c1ca6d73",
+      "native_accelerators": {
+        "reduction": true,
+        "pairs": true,
+        "indices": true
+      },
+      "seconds": 1.8843920510043972
+    },
+    "python": {
+      "status": "passed",
+      "seed": 20261019,
+      "cases": 8,
+      "module_orders": [
+        "pot",
+        "top",
+        "g1",
+        "g2",
+        "schreyer",
+        "block"
+      ],
+      "reduction_kernels": [
+        "copy",
+        "heap",
+        "packed"
+      ],
+      "certified_computations": 141,
+      "ordinary_g_pairs_checked": 7026,
+      "exact_outputs_sha256": "7560c7de91f78fb8f4f3b904c838625f621d4b460ec2f47b36528bb5c1ca6d73",
+      "native_accelerators": {
+        "reduction": false,
+        "pairs": false,
+        "indices": false
+      },
+      "seconds": 1.8461298170004738
+    }
+  },
+  "installation": {
+    "sdist_and_wheel_build": true,
+    "pure_python_wheel_outside_source": true,
+    "generated_cpp_from_extracted_sdist": true
+  },
+  "compatibility": {
+    "repeats": 1,
+    "measurement": "single-run compatibility smoke, not a speedup benchmark",
+    "same_native_sources_and_binaries": true,
+    "results": [
+      {
+        "case": "cyclic7",
+        "ordered_results_and_all_counters_match": true,
+        "baseline": {
+          "case": "cyclic7",
+          "status": "completed",
+          "basis_size": 2979,
+          "syzygy_size": 237,
+          "basis_sha256": "6bf0f8eca16b70041fb0cd81ff68b0d270b95d2122773f56a70de9a7926cc73f",
+          "syzygies_sha256": "84f67a9543f4fac1434916dd7f2202a0895de8529963dd629d416e3e22439d97",
+          "seconds": 19.635617952
+        },
+        "release": {
+          "case": "cyclic7",
+          "status": "completed",
+          "basis_size": 2979,
+          "syzygy_size": 237,
+          "basis_sha256": "6bf0f8eca16b70041fb0cd81ff68b0d270b95d2122773f56a70de9a7926cc73f",
+          "syzygies_sha256": "84f67a9543f4fac1434916dd7f2202a0895de8529963dd629d416e3e22439d97",
+          "seconds": 19.352310411
+        }
+      },
+      {
+        "case": "katsura8",
+        "ordered_results_and_all_counters_match": true,
+        "baseline": {
+          "case": "katsura8",
+          "status": "completed",
+          "basis_size": 831,
+          "syzygy_size": 139,
+          "basis_sha256": "b1486d748c09548d8c5ce99583e0df0d4f58991b7a67ff7b4a715f48f7132c9a",
+          "syzygies_sha256": "285787b20f0f8d88b1273a2748ca46cd782afd3679c5f9014b81278e15933a15",
+          "seconds": 5.497062495
+        },
+        "release": {
+          "case": "katsura8",
+          "status": "completed",
+          "basis_size": 831,
+          "syzygy_size": 139,
+          "basis_sha256": "b1486d748c09548d8c5ce99583e0df0d4f58991b7a67ff7b4a715f48f7132c9a",
+          "syzygies_sha256": "285787b20f0f8d88b1273a2748ca46cd782afd3679c5f9014b81278e15933a15",
+          "seconds": 6.011541396
+        }
+      }
+    ]
+  },
+  "changes": {
+    "native_algorithm_sources_changed": false,
+    "hot_reduction_and_pair_loops_changed": false,
+    "new_regression_test_methods": 5
+  },
+  "not_executed": [
+    "Windows native build and tests",
+    "macOS native build and tests",
+    "Python versions other than 3.12",
+    "hosted GitHub Actions"
+  ],
+  "limits": [
+    "Bounded review and tests; not a proof of implementation correctness",
+    "Compatibility timings are single runs, not a speedup study"
+  ]
+}

@@ -1,0 +1,5 @@
+-r requirements.txt
+Cython==3.3.0
+gmpy2==2.3.2
+setuptools>=77
+wheel

@@ -1,0 +1,13 @@
+include README.md LICENSE pyproject.toml build_native.py run_tests.py
+include requirements.txt requirements-native.txt
+include CONTRIBUTING.md .gitignore
+recursive-include .github *.yml
+recursive-include native *.pyx *.pxd *.pxi *.h *.hpp *.cpp
+recursive-include scripts *.py
+recursive-include tests *.py *.json *.gz *.md
+recursive-include docs *.md *.json
+recursive-include examples *.py *.json
+prune build
+prune dist
+prune results
+global-exclude __pycache__ *.py[cod] *.so *.so.* *.pyd *.o *.obj *.a *.lib *.dll *.dylib

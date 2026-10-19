@@ -1,0 +1,7 @@
+{
+  "name": "paper_syzygy",
+  "variables": ["x", "y"],
+  "polynomials": ["4*x^2", "9*y^4", "6*x*y^2+y"],
+  "polynomial_order": "lex",
+  "module_order": "pot"
+}

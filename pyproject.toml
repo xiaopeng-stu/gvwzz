@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gvwzz"
+dynamic = ["version"]
+description = "Auditable coefficient-aware GVW-type signature bases over ZZ"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["sympy==1.14.0"]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.scripts]
+gvwzz = "gvwzz.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["gvwzz*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "gvwzz._version.__version__"}
