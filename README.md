@@ -6,37 +6,70 @@ Optional C++/GMP extensions accelerate reduction, pair generation, indices,
 queues, and cover queries. Full J/G tail reduction is enabled by default.
 
 This standalone CPU source release is based on `0.10.0.post31`. The Python
-package version is `1.0.0`; the release name and Git tag are `v1`. Extract it into
-a new directory; no earlier release or updater is needed. Existing post31
+package version is `1.0.0`; the release name and Git tag are `v1`. Clone the
+repository or extract the source archive; no earlier release or updater is needed. Existing post31
 commands remain available. See the [release notes](docs/release-notes.md) for
 the review and validation scope.
 
-## Install and build
+## Install on a new computer
 
-Use Python 3.10 or later. Extract the archive and locate `gvwzz-v1`, the
-directory containing this README and `build_native.py`.
+Use Python 3.10 or later. The repository is
+[github.com/xiaopeng-stu/gvwzz](https://github.com/xiaopeng-stu/gvwzz).
 
-### Windows
+Follow the section for your operating system. The clone commands download the
+repository's default branch into a new directory named `gvwzz`.
+Run each command in order, and continue only after it succeeds.
 
-Install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-with the **Desktop development with C++** workload. Open PowerShell in
-`gvwzz-v1`, then run:
+**Using the source ZIP instead?** Install the same system prerequisites, extract
+the archive, and open a terminal in the directory containing this README and
+`build_native.py` (normally `gvwzz-v1`). Skip the
+`git clone` and `cd gvwzz` lines, then follow the remaining commands.
+
+### Windows (PowerShell)
+
+Install these prerequisites:
+
+1. [Python](https://www.python.org/downloads/windows/), version 3.10 or later.
+   Make sure `python` is available in a new PowerShell window.
+2. [Git for Windows](https://git-scm.com/download/win), with Git available from
+   the command line.
+3. [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/),
+   with the **Desktop development with C++** workload.
+
+Open a new PowerShell window in the directory where you want to keep the project:
 
 ```powershell
-python -m pip install -r requirements-native.txt
-python build_native.py
-python -m gvwzz doctor --require-native
+python --version
+git --version
+git clone https://github.com/xiaopeng-stu/gvwzz.git
+cd gvwzz
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-native.txt
+.\.venv\Scripts\python.exe build_native.py
+.\.venv\Scripts\python.exe -m gvwzz doctor --require-native
 ```
 
-### Linux
+Run Cyclic-7:
 
-Linux native builds require a C++ compiler, Python development headers, and
-Python's `venv` module. On Ubuntu or Debian, install these prerequisites:
+```powershell
+.\.venv\Scripts\python.exe -m gvwzz run --case cyclic7 --poly-order grevlex --module-order g2 --require-native --show-minimal-lt --no-show-basis --no-show-u --no-show-forest --progress 30 --output results/cyclic7.json
+```
+
+These commands use the virtual environment directly, so PowerShell activation
+is not required. In all later examples, replace `python` with
+`.\.venv\Scripts\python.exe` on Windows. When opening a new terminal, return
+to the source directory before running these commands.
+
+### Linux (Ubuntu/Debian)
+
+Install Git, Python, the C++ compiler, Python development headers, and virtual
+environment support:
 
 ```bash
 sudo apt update
-sudo apt install -y build-essential python3-dev python3-venv
+sudo apt install -y git python3 python3-dev python3-venv build-essential
 python3 --version
+git --version
 ```
 
 Check that `python3` is version 3.10 or later. For other Linux distributions,
@@ -44,10 +77,11 @@ install the equivalent packages with the distribution's package manager. If you
 use a separately installed Python, its development headers must match that
 interpreter.
 
-From the directory containing the extracted `gvwzz-v1` folder:
+Clone, create the environment, and build:
 
 ```bash
-cd gvwzz-v1
+git clone https://github.com/xiaopeng-stu/gvwzz.git
+cd gvwzz
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-native.txt
@@ -55,7 +89,7 @@ python build_native.py
 python -m gvwzz doctor --require-native
 ```
 
-Run Cyclic-7 in the same activated environment:
+Run Cyclic-7:
 
 ```bash
 python -m gvwzz run --case cyclic7 \
@@ -64,24 +98,60 @@ python -m gvwzz run --case cyclic7 \
   --progress 30 --output results/cyclic7.json
 ```
 
-To run the regression and reference checks:
+In a new terminal, return to the source directory and run
+`source .venv/bin/activate` before using the program. Run `deactivate` when
+finished. Install Python packages inside the virtual environment; use `sudo`
+only for the system packages above.
 
-```bash
-python run_tests.py --require-native --differential
-```
-
-In a new terminal, return to `gvwzz-v1` and run `source .venv/bin/activate`
-before using the program. Run `deactivate` when finished. Install Python packages
-inside the virtual environment; `sudo` is only used for system packages above.
-This release was checked on Linux x86-64 with Python 3.12.14; see the
+This release was checked on Linux x86-64 with Python 3.12.14. See the
 [validation report](docs/audit-v1.md) for the tested scope.
 
-### macOS
+### macOS (Terminal)
 
-Install Xcode Command Line Tools with `xcode-select --install` and use Python
-3.10 or later. From `gvwzz-v1`, use the virtual-environment, pip, build, and
-diagnostic commands in the Linux section. The Ubuntu/Debian `apt` commands
-do not apply to macOS.
+Install [Python for macOS](https://www.python.org/downloads/macos/), version
+3.10 or later. Install Apple's Command Line Tools, which provide the C++
+compiler and Git:
+
+```bash
+xcode-select --install
+```
+
+Complete the installation dialog before continuing. If the tools are already
+installed, proceed with the following commands:
+
+```bash
+python3 --version
+git --version
+git clone https://github.com/xiaopeng-stu/gvwzz.git
+cd gvwzz
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-native.txt
+python build_native.py
+python -m gvwzz doctor --require-native
+python -m gvwzz run --case cyclic7 --poly-order grevlex --module-order g2 --require-native --show-minimal-lt --no-show-basis --no-show-u --no-show-forest --progress 30 --output results/cyclic7.json
+```
+
+In a new terminal, return to the source directory and run
+`source .venv/bin/activate`. Ubuntu/Debian `apt` commands do not apply to
+macOS. Local v1 validation was performed on Linux; macOS checks are configured
+in GitHub Actions.
+
+### Select the v1 release
+
+The default clone commands above do not require a release tag. Once the
+maintainer has published the `v1` tag, select that fixed release from the
+source directory **before installing dependencies and building**:
+
+```text
+git fetch --tags
+git checkout v1
+```
+
+A detached-HEAD notice is normal when checking out a release tag. If you change
+the checked-out version after a build, reinstall its requirements and run
+`build_native.py` again with the same virtual-environment Python.
+
 
 ### Build diagnostics and installation modes
 
@@ -113,6 +183,9 @@ The release does not include GPU code or
 precompiled platform-specific binaries.
 
 ## Run a case
+
+Run these commands from the source directory. On Linux/macOS, activate `.venv`
+first. On Windows, replace `python` with `.\.venv\Scripts\python.exe`.
 
 Save a complete result and display only minimal leading terms:
 
@@ -216,11 +289,9 @@ Use `python -m gvwzz --help` and each subcommand's `--help` for all options.
 
 ## Publish and contribute
 
-See [Publishing on GitHub](docs/github-publishing.md) for creating the repository
-and the `v1` release. The repository owner has not been set in this source
-archive. `YOUR-USERNAME` in that guide is a placeholder, not an existing project
-address. The repository URL will be `https://github.com/YOUR-USERNAME/gvwzz`
-after publication under that name.
+Repository: [xiaopeng-stu/gvwzz](https://github.com/xiaopeng-stu/gvwzz).
+See [Publishing on GitHub](docs/github-publishing.md) for updating this repository
+and publishing the `v1` release.
 
 Bug reports and changes are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -228,6 +299,7 @@ Bug reports and changes are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 | Symptom | Action |
 | --- | --- |
+| `git` or `python` is not recognized | Install the prerequisites above, reopen the terminal, and check the version command. |
 | A requirements or build file cannot be found | Change into the extracted directory containing this README. |
 | `Microsoft Visual C++ 14.0 or greater is required` | Install the C++ workload above and rerun `python build_native.py`. |
 | A native extension or queue/cover entry point is unavailable | Run `python -m gvwzz doctor`; rebuild with the same interpreter. |
